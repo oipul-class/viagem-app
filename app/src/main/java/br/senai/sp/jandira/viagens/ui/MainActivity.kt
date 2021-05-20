@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.viagens
+package br.senai.sp.jandira.viagens.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.senai.sp.jandira.viagens.R
 import br.senai.sp.jandira.viagens.adapter.DestinoRecenteAdapter
 import br.senai.sp.jandira.viagens.api.DestinosRecentesCall
 import br.senai.sp.jandira.viagens.api.RetrofitApi

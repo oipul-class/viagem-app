@@ -1,5 +1,7 @@
 package br.senai.sp.jandira.viagens.model
 
+import java.io.Serializable
+
 // modelo do que vai ser recebido
 data class DestinosRecentes (
     var id: Long = 0,
@@ -7,5 +9,6 @@ data class DestinosRecentes (
     var valor: Double = 0.0,
     var nomeCidade: String = "",
     var siglaEstado: String = "",
-    var urlFoto: String = ""
-)
+    var urlFoto: String = "",
+    var descricao: String = ""
+) : Serializable

@@ -8,7 +8,7 @@ class RetrofitApi {
 
     companion object {
         // uma função que cria e retorna uma api pra ser usada
-        fun getRetrofit() : Retrofit {,
+        fun getRetrofit() : Retrofit {
             var retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

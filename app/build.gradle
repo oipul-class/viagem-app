@@ -23,7 +23,7 @@ android {
         }
     }
 
-    //Compatibilidade
+    // Compatibilidade
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -41,6 +41,11 @@ dependencies {
     // Bibliotecas para uso de api HTTP
     implementation 'com.squareup.retrofit2:retrofit:2.9.0' // comsumo de api
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0' // conversor de json pra objeto
+
+    // Biblioteca para carregamento de imagem via HTTP
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
