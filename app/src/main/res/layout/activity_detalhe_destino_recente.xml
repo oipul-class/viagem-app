@@ -17,6 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:title="Nome do destino"
+            app:expandedTitleTextAppearance="@style/expandedTitle"
+            app:collapsedTitleTextAppearance="@style/collapsedTitle"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -59,27 +61,23 @@
                 android:id="@+id/tv_local"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto"
                 android:text="Nome local"
-                android:textSize="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:drawableStart="@drawable/ic_baseline_location_24"
                 android:drawableTint="@color/colorPrimary"
-                android:textColor="@color/colorPrimaryDark"/>
+                style="@style/subTitle"/>
 
             <TextView
                 android:id="@+id/tv_a_partir_de"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/roboto"
                 android:text="A partir de:"
+                android:drawableStart="@drawable/ic_baseline_monetization_on_24"
                 app:layout_constraintStart_toStartOf="@id/tv_local"
                 app:layout_constraintTop_toBottomOf="@id/tv_local"
-                android:textColor="@color/colorPrimary"/>
+                style="@style/subTitle"/>
 
             <TextView
                 android:id="@+id/tv_valor"
@@ -88,9 +86,9 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/roboto"
                 android:text="R$500.00"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@android:color/holo_green_dark"
                 app:layout_constraintBottom_toBottomOf="@id/tv_a_partir_de"
                 app:layout_constraintStart_toEndOf="@id/tv_a_partir_de"
                 app:layout_constraintTop_toTopOf="@id/tv_a_partir_de" />
@@ -99,23 +97,49 @@
                 android:id="@+id/tv_imagens"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto"
                 android:text="Galeria de imagens"
                 app:layout_constraintStart_toStartOf="@id/tv_a_partir_de"
                 app:layout_constraintTop_toBottomOf="@id/tv_valor"
                 android:drawableStart="@drawable/ic_baseline_photo_library_24"
-                android:drawableTint="@color/colorPrimary"
-                android:textColor="@color/colorPrimaryDark"/>
+                style="@style/subTitle"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_galeria_fotos"
                 android:layout_width="match_parent"
-                android:layout_height="800dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/tv_imagens"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp" />
 
+            <TextView
+                android:id="@+id/tv_descricao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descrição"
+                android:drawableStart="@drawable/ic_baseline_info_24"
+                app:layout_constraintTop_toBottomOf="@id/rv_galeria_fotos"
+                app:layout_constraintLeft_toLeftOf="@id/tv_imagens"
+                style="@style/subTitle"/>
 
+            <TextView
+                android:id="@+id/tv_descricao_texto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_descricao"
+                app:layout_constraintLeft_toLeftOf="@id/tv_descricao"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laoreet sit amet cursus sit amet dictum. Phasellus faucibus scelerisque eleifend donec pretium. Consequat ac felis donec et odio pellentesque diam volutpat. Sed elementum tempus egestas sed sed risus pretium quam vulputate. Sed vulputate mi sit amet mauris commodo quis imperdiet massa. Egestas pretium aenean pharetra magna ac placerat vestibulum lectus. Morbi blandit cursus risus at. Interdum consectetur libero id faucibus. Quis enim lobortis scelerisque fermentum. Blandit volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque. Interdum varius sit amet mattis. Morbi tincidunt ornare massa eget egestas purus. Facilisi nullam vehicula ipsum a. Faucibus in ornare quam viverra orci sagittis eu volutpat. Nisi quis eleifend quam adipiscing vitae proin sagittis nisl. Scelerisque viverra mauris in aliquam sem fringilla ut morbi.
+
+Sit amet risus nullam eget felis eget nunc. Eget mauris pharetra et ultrices neque ornare aenean euismod. Sodales neque sodales ut etiam. Orci sagittis eu volutpat odio facilisis mauris. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt. Integer quis auctor elit sed vulputate mi sit amet mauris. Turpis massa tincidunt dui ut ornare. Sed tempus urna et pharetra pharetra massa massa. Maecenas volutpat blandit aliquam etiam. Scelerisque purus semper eget duis. Dolor sit amet consectetur adipiscing."/>
+
+            <TextView
+                android:id="@+id/tv_comentarios"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comentários"
+                android:drawableStart="@drawable/ic_baseline_speaker_notes_24"
+                app:layout_constraintTop_toBottomOf="@id/tv_descricao_texto"
+                app:layout_constraintLeft_toLeftOf="@id/tv_imagens"
+                style="@style/subTitle"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

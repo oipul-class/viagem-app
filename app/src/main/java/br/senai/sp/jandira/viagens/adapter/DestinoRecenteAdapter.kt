@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide
 
 class DestinoRecenteAdapter( val context: Context) : RecyclerView.Adapter<DestinoRecenteAdapter.Holder>() {
 
-    var listRecentes = emptyList<DestinosRecentes>()
+    private var listRecentes = emptyList<DestinosRecentes>()
 
     fun updateListRecentes(lista: List<DestinosRecentes>) {
         listRecentes = lista
