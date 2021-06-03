@@ -43,14 +43,9 @@ class DestinoRecenteAdapter( val context: Context) : RecyclerView.Adapter<Destin
         holder.tvNomeDestino.text = destinosRecentes.nome
         holder.tvLocalidade.text = destinosRecentes.nomeCidade
 
-        if (destinosRecentes.valor <= 0) {
-            holder.tvValor.text = "Grátis"
+        holder.tvValor.text = if (destinosRecentes.valor <= 0.0) "Grátis" else "R$ ${String.format("%.2f", destinosRecentes.valor)}"
 
-        }
-        else {
-            holder.tvValor.text = "R$ ${String.format("%.2f", destinosRecentes.valor)}"
 
-        }
 
         if (destinosRecentes.urlFoto.trim().isNotEmpty()) {
             Glide.with(context).load(destinosRecentes.urlFoto).into(holder.ivFotoCapa)

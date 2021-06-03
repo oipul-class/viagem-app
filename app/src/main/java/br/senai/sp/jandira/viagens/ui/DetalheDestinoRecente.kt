@@ -16,6 +16,7 @@ import br.senai.sp.jandira.viagens.model.DestinosRecentes
 import br.senai.sp.jandira.viagens.model.Foto
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +27,7 @@ class DetalheDestinoRecente : AppCompatActivity() {
     lateinit var ivFotoDestino: ImageView
     lateinit var tvLocal: TextView
     lateinit var tvValor: TextView
+    lateinit var tvAPartir: TextView
     lateinit var tvDescricao: TextView
     lateinit var rvGaleriaFotos: RecyclerView
 
@@ -50,12 +52,15 @@ class DetalheDestinoRecente : AppCompatActivity() {
         tvLocal = findViewById(R.id.tv_local)
         tvValor = findViewById(R.id.tv_valor)
         tvDescricao = findViewById(R.id.tv_descricao_texto)
-
+        tvAPartir = findViewById(R.id.tv_a_partir_de)
 
         collapsingToolbar.title = "${destinosRecentes.nome}"
         tvLocal.text = "${destinosRecentes.nomeCidade}"
 
-        if (destinosRecentes.valor <= 0) tvValor.text = "Graça"
+        if (destinosRecentes.valor <= 0) {
+            tvAPartir.visibility = TextView.INVISIBLE
+            tvValor.text = "Gratis"
+        }
         else tvValor.text = "R$ ${String.format("%.2f", destinosRecentes.valor)}"
 
         tvDescricao.text = destinosRecentes.descricao

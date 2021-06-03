@@ -109,7 +109,8 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/tv_imagens"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                />
 
             <TextView
                 android:id="@+id/tv_descricao"
@@ -140,6 +141,14 @@ Sit amet risus nullam eget felis eget nunc. Eget mauris pharetra et ultrices neq
                 app:layout_constraintTop_toBottomOf="@id/tv_descricao_texto"
                 app:layout_constraintLeft_toLeftOf="@id/tv_imagens"
                 style="@style/subTitle"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_comentarios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_comentarios"
+                android:layout_marginTop="8dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

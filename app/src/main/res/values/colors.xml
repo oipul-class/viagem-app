@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#0077c2</color>
     <color name="colorAccent">#283593</color>
     <color name="teste">#9C27B0</color>
+
+    <color name="transparentColorPrimary">#8042A5F5</color>
+
 </resources>
