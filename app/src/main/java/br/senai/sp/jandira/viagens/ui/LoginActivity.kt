@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.viagens.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -54,6 +55,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun updateUI(account: GoogleSignInAccount?) {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     override fun onClick(view: View) {
@@ -72,9 +74,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             val usuario = task.getResult(ApiException::class.java)
             if (usuario != null) {
-                Log.d("xpto", usuario.displayName.toString())
-                Log.d("xpto", usuario.email.toString())
+                val dadosUsuario = getSharedPreferences("dados_usuario", Context.MODE_PRIVATE)
+                val editor = dadosUsuario.edit()
 
+                editor.putString("display_name", usuario.displayName)
+                editor.putString("email", usuario.email)
+                editor.putString("url_photo", usuario.photoUrl.toString())
+                editor.putString("id", usuario.id)
+                editor.apply()
+                updateUI(usuario)
             }
         }
     }
