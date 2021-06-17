@@ -13,7 +13,7 @@ import br.senai.sp.jandira.viagens.model.Foto
 import br.senai.sp.jandira.viagens.ui.DialogImageDetail
 import com.bumptech.glide.Glide
 
-class GaleriaFotosDestinoAdpter(var context: Context) :
+class GaleriaFotosDestinoAdpter(val context: Context) :
     RecyclerView.Adapter<GaleriaFotosDestinoAdpter.ViewHolder>() {
 
 

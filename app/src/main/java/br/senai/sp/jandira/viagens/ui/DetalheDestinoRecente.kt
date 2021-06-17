@@ -3,15 +3,19 @@ package br.senai.sp.jandira.viagens.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.senai.sp.jandira.viagens.R
+import br.senai.sp.jandira.viagens.adapter.DestinoComentariosAdapter
 import br.senai.sp.jandira.viagens.adapter.GaleriaFotosDestinoAdpter
+import br.senai.sp.jandira.viagens.api.ComentarioCall
 import br.senai.sp.jandira.viagens.api.FotoCall
 import br.senai.sp.jandira.viagens.api.RetrofitApi
+import br.senai.sp.jandira.viagens.model.Comentario
 import br.senai.sp.jandira.viagens.model.DestinosRecentes
 import br.senai.sp.jandira.viagens.model.Foto
 import com.bumptech.glide.Glide
@@ -30,10 +34,13 @@ class DetalheDestinoRecente : AppCompatActivity() {
     lateinit var tvAPartir: TextView
     lateinit var tvDescricao: TextView
     lateinit var rvGaleriaFotos: RecyclerView
+    lateinit var rvcomentarios: RecyclerView
 
     lateinit var destinosRecentes : DestinosRecentes
 
     lateinit var galeriaFotosAdapater : GaleriaFotosDestinoAdpter
+
+    lateinit var  destinoComentariosAdapter: DestinoComentariosAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +48,7 @@ class DetalheDestinoRecente : AppCompatActivity() {
 
         carregarDados()
         carregarFotosDoDestino()
+        carregarComentarios()
     }
 
     private fun carregarDados() {
@@ -103,5 +111,41 @@ class DetalheDestinoRecente : AppCompatActivity() {
 
         })
 
+    }
+
+    private fun carregarComentarios() {
+        rvcomentarios = findViewById(R.id.rv_comentarios)
+
+        rvcomentarios.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        destinoComentariosAdapter = DestinoComentariosAdapter(this)
+
+        rvcomentarios.adapter = destinoComentariosAdapter
+
+        var listaDeComentarios: List<Comentario>
+
+        val retrofit = RetrofitApi.getRetrofit()
+        val comentarioCall = retrofit.create(ComentarioCall::class.java)
+
+        val call = comentarioCall.getDestinoComentarios(destinosRecentes.id)
+
+        call.enqueue(object : Callback<List<Comentario>> {
+            override fun onFailure(call: Call<List<Comentario>>, t: Throwable) {
+                Toast.makeText(this@DetalheDestinoRecente,  "A conexão falhou!", Toast.LENGTH_SHORT ).show()
+                Log.e("ERRO_CONEXÃO", t.message.toString())
+            }
+
+            override fun onResponse(call: Call<List<Comentario>>, response: Response<List<Comentario>>) {
+                listaDeComentarios = response.body()!!
+                if (listaDeComentarios.isNotEmpty()) {
+                    destinoComentariosAdapter.updateList(listaDeComentarios)
+                } else {
+                    val tvComentarios = findViewById<TextView>(R.id.tv_comentarios)
+                    tvComentarios.visibility = View.GONE
+                    rvcomentarios.visibility = View.GONE
+                }
+            }
+
+        })
     }
 }

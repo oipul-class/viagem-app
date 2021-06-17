@@ -82,6 +82,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 editor.putString("url_photo", usuario.photoUrl.toString())
                 editor.putString("id", usuario.id)
                 editor.apply()
+
                 updateUI(usuario)
             }
         }

@@ -2,9 +2,10 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="6dp"
+    android:layout_margin="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,6 +26,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/iv_imagem_perfio"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/homem" />
@@ -45,7 +47,7 @@
             android:id="@+id/tv_data_da_publicacao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:text="2020-10-10"
             android:textAppearance="@style/commentPublishDate"
             app:layout_constraintStart_toStartOf="@id/tv_nome_do_usuario"
@@ -53,21 +55,23 @@
 
         <RatingBar
             android:id="@+id/rb_nota"
+            style="@style/commentRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:max="5"
             android:numStars="5"
+            android:rating="3.5"
             android:scaleX="0.7"
             android:scaleY="0.7"
-            android:rating="3.5"
             android:transformPivotX="0dp"
             android:transformPivotY="0dp"
-            app:layout_constraintStart_toStartOf="@+id/tv_data_da_publicacao"
-            app:layout_constraintTop_toBottomOf="@+id/tv_data_da_publicacao"
-            style="@style/commentRatingBar"/>
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/cv_imagem_perfio"
+            app:layout_constraintTop_toBottomOf="@+id/cv_imagem_perfio" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_usuario_comentario"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,6 +79,9 @@
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mollis vestibulum auctor. Nullam ut diam sodales, porta lacus eget, fermentum quam. Donec vel gravida dolor, vel egestas augue. Praesent ante nulla, pretium et porta at, facilisis at nunc. Sed posuere urna magna, non malesuada dui ultrices at. Aenean in ipsum a turpis tristique faucibus in vitae erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris at dignissim urna. Proin pharetra pretium felis eget ullamcorper. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis blandit, lacus et dignissim dictum, lectus neque vehicula odio, quis suscipit metus augue sed leo."
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
             android:background="@drawable/user_comment_card"
             style="@style/userCommentary"/>
 

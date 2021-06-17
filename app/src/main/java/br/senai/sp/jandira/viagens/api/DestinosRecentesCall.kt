@@ -9,4 +9,6 @@ interface DestinosRecentesCall {
     // requesição get
     @GET("destinos/recentes")
     fun getDestinosRecentes() : Call<List<DestinosRecentes>>
+
+
 }

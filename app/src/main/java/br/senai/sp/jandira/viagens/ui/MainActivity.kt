@@ -1,10 +1,11 @@
 package br.senai.sp.jandira.viagens.ui
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import br.senai.sp.jandira.viagens.adapter.DestinoRecenteAdapter
 import br.senai.sp.jandira.viagens.api.DestinosRecentesCall
 import br.senai.sp.jandira.viagens.api.RetrofitApi
 import br.senai.sp.jandira.viagens.model.DestinosRecentes
+import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import retrofit2.Call
@@ -22,6 +24,8 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
+    lateinit var tvDisplayName: TextView
+    lateinit var ivUserPhoto: ImageView
     lateinit var rvDestinosRecentes: RecyclerView
     lateinit var adapterDestinosRecentes: DestinoRecenteAdapter
     lateinit var btSair: TextView
@@ -32,6 +36,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         rvDestinosRecentes = findViewById(R.id.rv_destinos_recentes)
         btSair = findViewById(R.id.tv_sair)
+        tvDisplayName = findViewById(R.id.tv_user_nome)
+        ivUserPhoto = findViewById(R.id.iv_user_photo)
+
         btSair.setOnClickListener(this)
         rvDestinosRecentes.layoutManager =
             LinearLayoutManager(
@@ -43,6 +50,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         rvDestinosRecentes.adapter = adapterDestinosRecentes
 
         carregarListaDestinosRecentes()
+        exibirProfile()
     }
 
     private fun carregarListaDestinosRecentes() {
@@ -75,6 +83,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         googleSignInClient.signOut()
 
         finish()
+    }
+
+    private fun exibirProfile() {
+        val dados = getSharedPreferences("dados_usuario", Context.MODE_PRIVATE)
+        tvDisplayName.text = dados.getString("display_name", "")
+
+        Glide.with(this).load(dados.getString("url_photo", "")).into(ivUserPhoto)
     }
 
     override fun onClick(v: View?) {
